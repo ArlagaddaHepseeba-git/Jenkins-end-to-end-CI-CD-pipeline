@@ -318,6 +318,8 @@ setup all the tools on their respective servers
 
 <img width="1920" height="1080" alt="time techstore" src="https://github.com/user-attachments/assets/ac148bd4-b220-48aa-aba9-79503ede1ef1" />
 
+<img width="1920" height="1080" alt="output" src="https://github.com/user-attachments/assets/570f0a24-d530-478d-a7bc-49495d4a8100" />
+
 
 ## 🔔SLACK NOTIFICATION:
 
