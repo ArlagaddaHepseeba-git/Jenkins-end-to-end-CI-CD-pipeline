@@ -79,22 +79,36 @@ setup all the tools on their respective servers
 
 1. **jenkins.sh**
 
- #STEP-1: INSTALLING GIT 
- yum install git  -y
+<img width="1920" height="1080" alt="jenkins server" src="https://github.com/user-attachments/assets/026cd884-189d-47b5-83ed-d1b54fa9f196" />
 
- #STEP-2: GETTING THE REPO (jenkins.io --> download -- > redhat)
- sudo wget -O /etc/yum.repos.d/jenkins.repo \
-     https://pkg.jenkins.io/redhat-stable/jenkins.repo
- sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+2. **Tomcat.sh**
 
- #STEP-3: DOWNLOAD JAVA11 AND JENKINS
- yum install java-17-amazon-corretto -y
- yum install jenkins -y
+   <img width="1920" height="1080" alt="tomcat server" src="https://github.com/user-attachments/assets/4453ae5e-6b3e-43fb-9630-541d3c13e3c3" />
 
- #STEP-4: RESTARTING JENKINS (when we download service it will on stopped state)
- systemctl start jenkins.service
- systemctl enable jenkins.service
- systemctl status jenkins.service
+   <img width="1920" height="1080" alt="tomcat" src="https://github.com/user-attachments/assets/04c6681e-8a0d-4ffb-82bd-82fb61ee1a50" />
+
+3. **Sonar.sh**
+   
+   <img width="1920" height="1080" alt="sonar server" src="https://github.com/user-attachments/assets/8a3109d0-1e4b-4506-b2b2-13ebbdb549b8" />
+
+   <img width="1920" height="1080" alt="sonarqube" src="https://github.com/user-attachments/assets/67230dc6-3902-4cf9-8913-d2861fd86228" />
+
+4. **nexus.sh**
+
+   <img width="1920" height="1080" alt="nexus server" src="https://github.com/user-attachments/assets/cf1116f2-2cef-4fa3-bbee-631289d17008" />
+
+   <img width="1920" height="1080" alt="nexus repo" src="https://github.com/user-attachments/assets/5cae2f42-58f8-4456-88db-cda75ba66615" />
+
+
+   
+
+
+
+   
+   
+
+
+
 
 
 
