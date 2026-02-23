@@ -1,67 +1,72 @@
 pipeline {
     agent any
-
     tools {
-        maven 'maven3'
+        maven "mymaven"
     }
-
     stages {
-
-        stage('1 - Git Checkout') {
+        stage('Code') {
             steps {
                 git branch: 'main',
                     url: 'https://github.com/ArlagaddaHepseeba-git/jenkins-end-to-end-ci-cd-pipeline.git'
             }
         }
-
-        stage('2 - Maven Build') {
+        stage('CQA') {
+            steps {
+                withSonarQubeEnv('mysonar') {
+                    sh '''
+                        mvn sonar:sonar \
+                        -Dsonar.projectKey=MyProject \
+                        -Dsonar.host.url=http://54.85.1.178:9000 \
+                        -Dsonar.login=4b4434c4157764adea0d1e968981ed7c8d9afc5c
+                    '''
+                }
+            }
+        }
+        stage('Build') {
             steps {
                 sh 'mvn clean package'
             }
         }
-
-        stage('3 - SonarQube Scan') {
+        stage('Artifact') {
             steps {
-                withSonarQubeEnv('sonar-server') {
-                    sh 'mvn sonar:sonar'
-                }
+                nexusArtifactUploader(
+                    artifacts: [[
+                        artifactId: 'myweb',
+                        classifier: '',
+                        file: 'target/myweb-8.7.3.war',
+                        type: 'war'
+                    ]],
+                    credentialsId: 'nexus',
+                    groupId: 'in.javahome',
+                    nexusUrl: '54.209.161.173:8081',
+                    nexusVersion: 'nexus3',
+                    protocol: 'http',
+                    repository: 'myrepo',
+                    version: '8.7.3'
+                )
             }
         }
-
-        stage('4 - Upload to Nexus') {
-            steps {
-                sh 'mvn deploy'
-            }
-        }
-
-        stage('5 - Deploy to Tomcat') {
+        stage('Deploy') {
             steps {
                 deploy adapters: [
-                    tomcat8(
-                        credentialsId: 'tomcat-cred',
+                    tomcat9(
+                        credentialsId: 'tomcat',
                         path: '',
-                        url: 'http://YOUR_TOMCAT_IP:8080'
+                        url: 'http://100.53.178.163:8080'
                     )
                 ],
-                contextPath: 'myweb',
+                contextPath: 'myapp',
                 war: 'target/*.war'
             }
         }
-
     }
-
     post {
-        success {
-            echo 'BUILD SUCCESS!'
-            slackSend channel: '#devops-alerts',
-                      color: 'good',
-                      message: "SUCCESS: ${env.JOB_NAME} Build #${env.BUILD_NUMBER}"
-        }
-        failure {
-            echo 'BUILD FAILED!'
-            slackSend channel: '#devops-alerts',
-                      color: 'danger',
-                      message: "FAILED: ${env.JOB_NAME} Build #${env.BUILD_NUMBER}"
+        always {
+            echo 'Slack Notifications'
+            slackSend(
+                channel: '#new-channel',
+                message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} \n More info: ${env.BUILD_URL}"
+            )
         }
     }
 }
