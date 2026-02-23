@@ -97,6 +97,13 @@ setup all the tools on their respective servers
 
    <img width="1920" height="1080" alt="nexus server" src="https://github.com/user-attachments/assets/cf1116f2-2cef-4fa3-bbee-631289d17008" />
 
+   <img width="2880" height="1516" alt="image" src="https://github.com/user-attachments/assets/ec8517e5-f836-4091-bbf4-0fb77eb6a7d6" />
+
+   Create a repository in nexus
+
+   SELECT REPOSITORIES
+
+
    <img width="1920" height="1080" alt="nexus repo" src="https://github.com/user-attachments/assets/5cae2f42-58f8-4456-88db-cda75ba66615" />
 
 
