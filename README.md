@@ -5,15 +5,15 @@
 
 ## 🛠️ Tools & Technologies
 
-### 1.AWS EC2 
-### 2.Git 
-### 3.GitHub 
-### 4.Jenkins 
-### 5.Maven
-### 6.SonarQube 
-### 7.Nexus 
-### 8.Tomcat 
-### 9.Slack 
+  ### 1.AWS EC2 
+  ### 2.Git 
+  ### 3.GitHub 
+  ### 4.Jenkins 
+  ### 5.Maven
+  ### 6.SonarQube 
+  ### 7.Nexus 
+  ### 8.Tomcat 
+  ### 9.Slack 
 
 ## 🏗️ Architecture
 
@@ -77,17 +77,17 @@ Let's launch all 4 servers on AWS EC2.
 
 setup all the tools on their respective servers
 
-1. **jenkins.sh**
+1. **jenkins server**
 
 <img width="1920" height="1080" alt="jenkins server" src="https://github.com/user-attachments/assets/026cd884-189d-47b5-83ed-d1b54fa9f196" />
 
-2. **Tomcat.sh**
+2. **Tomcat server**
 
    <img width="1920" height="1080" alt="tomcat server" src="https://github.com/user-attachments/assets/4453ae5e-6b3e-43fb-9630-541d3c13e3c3" />
 
    <img width="1920" height="1080" alt="tomcat" src="https://github.com/user-attachments/assets/04c6681e-8a0d-4ffb-82bd-82fb61ee1a50" />
 
-3. **Sonar.sh**
+3. **Sonar server**
    
    <img width="1920" height="1080" alt="sonar server" src="https://github.com/user-attachments/assets/8a3109d0-1e4b-4506-b2b2-13ebbdb549b8" />
 
@@ -96,7 +96,7 @@ setup all the tools on their respective servers
    <img width="1920" height="1080" alt="sonar nexus login" src="https://github.com/user-attachments/assets/c72a966e-8858-45a9-a6c8-f27378620383" />
 
 
-4. **nexus.sh**
+4. **nexus server**
 
    <img width="1920" height="1080" alt="nexus server" src="https://github.com/user-attachments/assets/cf1116f2-2cef-4fa3-bbee-631289d17008" />
 
