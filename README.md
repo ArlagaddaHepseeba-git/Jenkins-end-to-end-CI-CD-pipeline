@@ -43,5 +43,34 @@ Deploys the WAR file to the Tomcat server to make the application live.
 📢 **Stage 6: Post Build Actions (Slack Notification)**
 Sends a success or failure notification to the Slack channel after the pipeline completes.
 
+🏗️ Practical Implementation of Project
+
+Here I need 4 servers to implement this project.
+
+1. **Jenkins**
+   - AMI = Amazon Linux 2023
+   - Instance type = t2.medium
+   - EBS = 8 GB
+   - Security Groups = SSH, 8080
+
+2. **Tomcat**
+   - AMI = Amazon Linux 2023
+   - Instance type = t2.micro
+   - EBS = 8 GB
+   - Security Groups = SSH, 8080
+
+3. **SonarQube**
+   - AMI = Amazon Linux 2023
+   - Instance type = t2.medium
+   - EBS = 28 GB
+   - Security Groups = SSH, 9000
+
+4. **Nexus**
+   - AMI = Amazon Linux 2023
+   - Instance type = t2.medium
+   - EBS = 28 GB
+   - Security Groups = SSH, 8081
+
+Let's launch all 4 servers on AWS EC2.
 
 
