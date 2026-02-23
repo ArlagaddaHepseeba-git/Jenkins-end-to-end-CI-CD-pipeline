@@ -225,78 +225,128 @@ setup all the tools on their respective servers
 
 
   pipeline {
+  
     agent any
+    
     tools {
+    
         maven "mymaven"
     }
+    
     stages {
+    
         stage('Code') {
+        
             steps {
+            
                 git branch: 'main',
+                
                     url: 'https://github.com/ArlagaddaHepseeba-git/jenkins-end-to-end-ci-cd-pipeline.git'
             }
         }
+        
         stage('CQA') {
+        
             steps {
+            
                 withSonarQubeEnv('mysonar') {
+                
                     sh '''
                         mvn sonar:sonar \
+                        
                         -Dsonar.projectKey=MyProject \
+                        
                         -Dsonar.host.url=http://54.85.1.178:9000 \
+                        
                         -Dsonar.login=4b4434c4157764adea0d1e968981ed7c8d9afc5c
+                        
                     '''
                 }
             }
         }
+        
         stage('Build') {
+        
             steps {
+            
                 sh 'mvn clean package'
             }
         }
+        
         stage('Artifact') {
+        
             steps {
+            
                 nexusArtifactUploader(
+                
                     artifacts: [[
+                    
                         artifactId: 'myweb',
+                        
                         classifier: '',
+                        
                         file: 'target/myweb-8.7.3.war',
+                        
                         type: 'war'
+                        
                     ]],
+                    
                     credentialsId: 'nexus',
+                    
                     groupId: 'in.javahome',
+                    
                     nexusUrl: '54.209.161.173:8081',
+                    
                     nexusVersion: 'nexus3',
+                    
                     protocol: 'http',
+                    
                     repository: 'myrepo',
+                    
                     version: '8.7.3'
+                    
                 )
             }
         }
+        
         stage('Deploy') {
+        
             steps {
+            
                 deploy adapters: [
+                
                     tomcat9(
+                    
                         credentialsId: 'tomcat',
+                        
                         path: '',
+                        
                         url: 'http://100.53.178.163:8080'
                     )
                 ],
+                
                 contextPath: 'myapp',
+                
                 war: 'target/*.war'
             }
         }
     }
+    
     post {
+    
         always {
+        
             echo 'Slack Notifications'
+            
             slackSend(
+            
                 channel: '#new-channel',
+                
                 message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} \n More info: ${env.BUILD_URL}"
             )
         }
     }
 }
-
 
 
 
@@ -324,6 +374,47 @@ setup all the tools on their respective servers
 ## 🔔SLACK NOTIFICATION:
 
 <img width="1920" height="1080" alt="time slack sucess" src="https://github.com/user-attachments/assets/dc4c624a-e326-4983-9140-7b96d2e126c0" />
+
+
+
+## ⚠️ Problems Faced
+
+1. **SonarQube not starting** — The sonar user had no sudo permission.
+   Fixed by running the start command from ec2-user using sudo su - sonar.
+
+2. **Branch error in Jenkins** — Jenkins was looking for master branch
+   but my repo had main branch. Fixed by adding branch: 'main' in Jenkinsfile.
+
+3. **Slack notification failed** — Channel name mismatch between Jenkins
+   config and Jenkinsfile. Fixed by using same channel name #new-channel.
+
+4. **Nexus authentication failed** — Wrong credentials ID in Jenkinsfile.
+   Fixed by matching exact credentials ID added in Jenkins.
+
+
+## 📚 Learning Outcomes
+
+1. Learned how to set up and configure Jenkins for CI/CD automation.
+
+2. Understood how SonarQube performs static code analysis to detect
+   bugs, code smells and security vulnerabilities.
+
+3. Learned how Maven builds and packages Java applications as WAR files
+   and how Nexus stores and manages build artifacts.
+
+4. Learned how to deploy applications to Tomcat server automatically
+   through Jenkins pipeline.
+
+5. Gained hands-on experience with AWS EC2 by launching and configuring
+   multiple servers for a real-world DevOps project.
+   
+
+## 🎯 Conclusion
+
+This project gave me hands-on experience with a complete end-to-end 
+CI/CD pipeline using industry standard DevOps tools. From source code 
+to deployment, every stage was automated using Jenkins making the 
+software delivery process faster, reliable and efficient.
 
 
 
