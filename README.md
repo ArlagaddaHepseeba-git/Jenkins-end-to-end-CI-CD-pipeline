@@ -166,7 +166,14 @@ setup all the tools on their respective servers
 
    Click on Next
 
+   <img width="1920" height="1080" alt="slackkkk" src="https://github.com/user-attachments/assets/8b0e3c5c-bcb4-4a17-aefa-4dca003e4bba" />
+
+   Click on next
+
   Add teammate mail id’s
+
+  <img width="2880" height="1300" alt="image" src="https://github.com/user-attachments/assets/238146f2-8313-4172-a903-52ba23fdec2b" />
+
 
   Enter project name
 
