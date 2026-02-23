@@ -93,8 +93,6 @@ setup all the tools on their respective servers
 
    <img width="1920" height="1080" alt="sonarqube" src="https://github.com/user-attachments/assets/67230dc6-3902-4cf9-8913-d2861fd86228" />
 
-   <img width="1920" height="1080" alt="sonar nexus login" src="https://github.com/user-attachments/assets/c72a966e-8858-45a9-a6c8-f27378620383" />
-
 
 4. **nexus server**
 
