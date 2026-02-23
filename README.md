@@ -224,6 +224,7 @@ setup all the tools on their respective servers
   After adding the credentials, write the pipeline like this
 
 
+  
   pipeline {
   
     agent any
@@ -346,7 +347,7 @@ setup all the tools on their respective servers
             )
         }
     }
-}
+  }
 
 
 
@@ -415,6 +416,8 @@ This project gave me hands-on experience with a complete end-to-end
 CI/CD pipeline using industry standard DevOps tools. From source code 
 to deployment, every stage was automated using Jenkins making the 
 software delivery process faster, reliable and efficient.
+
+
 
 
 
