@@ -43,7 +43,7 @@ Deploys the WAR file to the Tomcat server to make the application live.
 📢 **Stage 6: Post Build Actions (Slack Notification)**
 Sends a success or failure notification to the Slack channel after the pipeline completes.
 
-🏗️ Practical Implementation of Project
+## 🏗️ Practical Implementation of Project
 
 Here I need 4 servers to implement this project.
 
@@ -72,5 +72,30 @@ Here I need 4 servers to implement this project.
    - Security Groups = SSH, 8081
 
 Let's launch all 4 servers on AWS EC2.
+
+<img width="1920" height="1080" alt="EC2-INSTANCE" src="https://github.com/user-attachments/assets/f64c4ba0-2968-4be1-898f-042457406054" />
+
+setup all the tools on their respective servers
+
+1. **jenkins.sh**
+
+ #STEP-1: INSTALLING GIT 
+ yum install git  -y
+
+ #STEP-2: GETTING THE REPO (jenkins.io --> download -- > redhat)
+ sudo wget -O /etc/yum.repos.d/jenkins.repo \
+     https://pkg.jenkins.io/redhat-stable/jenkins.repo
+ sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+
+ #STEP-3: DOWNLOAD JAVA11 AND JENKINS
+ yum install java-17-amazon-corretto -y
+ yum install jenkins -y
+
+ #STEP-4: RESTARTING JENKINS (when we download service it will on stopped state)
+ systemctl start jenkins.service
+ systemctl enable jenkins.service
+ systemctl status jenkins.service
+
+
 
 
